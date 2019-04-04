@@ -1,0 +1,11 @@
+{
+  "frameworks": {
+    "net46": {
+      "dependencies": {
+        "ImageResizer": "4.1.11",
+        "System.IO" : "4.0.0",
+        "Microsoft.Azure.CognitiveServices.Vision.ComputerVision":"4.0.0"
+      }
+    }
+  }
+}

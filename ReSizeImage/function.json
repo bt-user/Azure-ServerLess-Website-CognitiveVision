@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "name": "testblob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "images/{name}",
+      "connection": "AZURE_STORAGE_CONNECTION_STRING"
+    },
+    {
+      "type": "blob",
+      "name": "thumbnail",
+      "path": "thumbnails/{name}",
+      "connection": "AZURE_STORAGE_CONNECTION_STRING",
+      "direction": "out"
+    },
+    {
+      "type": "documentDB",
+      "name": "$return",
+      "databaseName": "imagesdb",
+      "collectionName": "images",
+      "createIfNotExists": false,
+      "connection": "cosmosdbfirstapp_DOCUMENTDB",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
