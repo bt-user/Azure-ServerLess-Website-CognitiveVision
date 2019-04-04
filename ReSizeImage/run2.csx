@@ -41,12 +41,23 @@ computerVision.Endpoint = System.Environment.GetEnvironmentVariable("COMP_VISION
 
 ImageAnalysis analysis = await computerVision.AnalyzeImageInStreamAsync(
                     testblob, features);
-log.Info(analysis.Description.Captions[0].Text+"hellya");
-
-    return new {
+log.Info("Found This:" + analysis.Description.Captions[0].Text);
+return new {
         id = name,
         imgPath = "/images/" + name,
         thumbnailPath = "/thumbnails/" + name,
         description = analysis.Description
     };
+        
+//OCR Start//
+const bool DetectOrientation = true;
+Log("Calling ComputerVisionClient.RecognizePrintedTextInStreamAsync()...");
+OcrResult ocrResult = await computerVision.RecognizePrintedTextInStreamAsync(!DetectOrientation, testblob, OcrLanguages.En);
+    return new {
+        id = name,
+        imgPath = "/images/" + name,
+        thumbnailPath = "/thumbnails/" + name,
+        description = ocrResult.Description
+    };
+//OCR End//
 }
